@@ -351,7 +351,6 @@ void send_message(char* iName, unsigned char* destIPRaw, unsigned char* routerIP
 		send_arp(hw_addr, iName, routerIP, 1, address);
 		printf("Router MAC Address = %x:%x:%x:%x:%x:%x\n", address[0], address[1], address[2], 
 						address[3], address[4], address[5]);
-		//sscanf("6a:bc:e2:c3:25:59", "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx", &address[0], &address[1], &address[2], &address[3], &address[4], &address[5]);
 	}
 	
 	sk_addr.sll_ifindex = if_idx.ifr_ifindex;
@@ -525,7 +524,6 @@ void recv_all(char * iName)
 			unsigned char my_ip_split[4];
 			strcpy(my_ip, inet_ntoa(get_ip_saddr(iName, sockfd)));
 			sscanf(my_ip, "%hhd.%hhd.%hhd.%hhd", &my_ip_split[0], &my_ip_split[1], &my_ip_split[2], &my_ip_split[3]);
-			//printf("My IP = %s\n", my_ip);
 			printf("My IP = %d.%d.%d.%d\n", my_ip_split[0], my_ip_split[1], my_ip_split[2], my_ip_split[3]);
 			printf("Target IP = %d.%d.%d.%d\n", arp->target_ip[0], arp->target_ip[1], arp->target_ip[2], arp->target_ip[3]);
 			if(arp->opcode == htons((short)1))
@@ -607,7 +605,6 @@ int main(int argc, char *argv[])
 			if (argc == 6)
 			{
 				mode=SEND; 
-				//sscanf(argv[3], "%hhd.%hhd.%hhd.%hhd", &dest_ip[0], &dest_ip[1], &dest_ip[2], &dest_ip[3]);
 				strcpy(dest_ip, argv[3]);
 				sscanf(argv[4], "%hhd.%hhd.%hhd.%hhd", &router_ip[0], &router_ip[1], &router_ip[2], &router_ip[3]);
 				strncpy(buf, argv[5], BUF_SIZ);
